@@ -3,7 +3,6 @@ WORKDIR /app
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-ENV ASPNETCORE_ENVIRONMENT=Development
 WORKDIR /src
 COPY ["aspnetcore_api.csproj", ""]
 RUN dotnet restore "./aspnetcore_api.csproj"
@@ -14,6 +13,7 @@ RUN dotnet build "aspnetcore_api.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "aspnetcore_api.csproj" -c Release -o /app/publish
 
+# build runtime image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .

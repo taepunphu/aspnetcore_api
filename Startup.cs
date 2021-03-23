@@ -45,6 +45,13 @@ namespace aspnetcore_api
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "aspnetcore_api v1");
                 });
             }
+            else
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "aspnetcore_api v1");
+                });
+            }
 
             //app.UseHttpsRedirection();
 
