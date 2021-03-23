@@ -3,6 +3,7 @@ WORKDIR /app
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+ENV ASPNETCORE_ENVIRONMENT=Development
 WORKDIR /src
 COPY ["aspnetcore_api.csproj", ""]
 RUN dotnet restore "./aspnetcore_api.csproj"
