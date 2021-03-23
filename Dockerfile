@@ -13,7 +13,6 @@ RUN dotnet build "aspnetcore_api.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "aspnetcore_api.csproj" -c Release -o /app/publish
 
-# build runtime image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
